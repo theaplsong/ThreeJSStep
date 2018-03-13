@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="models\o1.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -76,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cube.html" />
+    <Content Include="jsonloader.html" />
     <Content Include="js\three.min.js" />
     <Content Include="models\crate.gif" />
     <Content Include="Web.config" />
