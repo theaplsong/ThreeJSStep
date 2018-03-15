@@ -80,6 +80,7 @@
     <Content Include="jsonloader.html" />
     <Content Include="js\three.min.js" />
     <Content Include="models\crate.gif" />
+    <Content Include="PromiseTest.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        //var iis = false;
+
+        //var myFirstPromise = new Promise(function (resolve, reject) {
+        //    if (iis == true) resolve('ok');
+        //    else reject('erro');
+        //}).then(function (value) { alert(value) }, function (reason) { alert(reason) });
+
+
+        Promise.resolve(100).then(function (a) { alert(a); a += 1; return new Promise(function (resolve,reject) { resolve(a) })}).then(function (b) { alert(b) });
+
+    </script>
+</body>
+</html>
