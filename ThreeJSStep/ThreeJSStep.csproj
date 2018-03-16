@@ -66,6 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\DeviceOrientationControls.js" />
+    <Content Include="js\OrbitControls.js" />
+    <Content Include="js\StereoEffect.js" />
     <Content Include="models\o1.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -81,6 +84,7 @@
     <Content Include="js\three.min.js" />
     <Content Include="models\crate.gif" />
     <Content Include="PromiseTest.html" />
+    <Content Include="StereoTest.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

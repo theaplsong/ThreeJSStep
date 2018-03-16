@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="js/three.min.js"></script>
+    <script src="js/StereoEffect.js"></script>
+</head>
+<body>
+
+    <script type="text/javascript">
+        var camera, scene, renderer, mesh, effect;
+
+        //init
+        function init() {
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100000);
+            camera.position.z = 3200;
+
+            scene = new THREE.Scene();
+
+            var geometry = new THREE.BoxBufferGeometry(100, 32, 16);
+            var texture = new THREE.TextureLoader().load("models/crate.gif");
+            var material = new THREE.MeshBasicMaterial({ map: texture });
+            mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+
+            //
+            renderer = new THREE.WebGLRenderer();
+            renderer.setPixelRatio(window.devicePixelRatio);
+            effect = new THREE.StereoEffect(renderer);
+            effect.setSize(window.innerWidth, window.innerHeight);
+
+            //renderer.setSize(window.innerWidth, window.innerHeight);
+            //document.body.appendChild(renderer.domElement);
+            //
+
+
+            //listen change window size
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            effect.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            camera.lookAt(scene.position);
+
+            requestAnimationFrame(animate);
+            mesh.rotation.x += 0.005;
+            mesh.rotation.y += 0.01;
+            effect.render(scene, camera);
+        }
+        init();
+        animate();
+    </script>
+</body>
+</html>
