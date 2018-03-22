@@ -69,6 +69,13 @@
     <Content Include="js\DeviceOrientationControls.js" />
     <Content Include="js\OrbitControls.js" />
     <Content Include="js\StereoEffect.js" />
+    <Content Include="js\WebVR.js" />
+    <Content Include="models\bg1\nx.jpg" />
+    <Content Include="models\bg1\ny.jpg" />
+    <Content Include="models\bg1\nz.jpg" />
+    <Content Include="models\bg1\px.jpg" />
+    <Content Include="models\bg1\py.jpg" />
+    <Content Include="models\bg1\pz.jpg" />
     <Content Include="models\o1.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">

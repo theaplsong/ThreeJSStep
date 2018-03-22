@@ -4,39 +4,60 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="js/three.min.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/DeviceOrientationControls.js"></script>
     <script src="js/StereoEffect.js"></script>
+    <script src="js/WebVR.js"></script>
 </head>
 <body>
 
     <script type="text/javascript">
-        var camera, scene, renderer, mesh, effect;
+        var camera, scene, controls, effect;
 
         //init
         function init() {
             camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100000);
-            camera.position.z = 3200;
-
+            camera.position.z = 320;
             scene = new THREE.Scene();
+            scene.background = new THREE.CubeTextureLoader().setPath('models/bg1/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
-            var geometry = new THREE.BoxBufferGeometry(100, 32, 16);
-            var texture = new THREE.TextureLoader().load("models/crate.gif");
-            var material = new THREE.MeshBasicMaterial({ map: texture });
-            mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
+            //var geometry = new THREE.SphereBufferGeometry(100, 32, 16);
+            //var textureCube = new THREE.CubeTextureLoader().setPath('models/bg1/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+            //textureCube.mapping = THREE.CubeRefractionMapping;
+            //var material = new THREE.MeshBasicMaterial({ color: 0xffffff, envMap: textureCube, refractionRatio: 0.95 });
+            //mesh = new THREE.Mesh(geometry, material);
+            //scene.add(mesh);
+
+            //var crosshair = new THREE.Mesh(
+            //    new THREE.RingGeometry(1, 5, 32),
+            //    new THREE.MeshBasicMaterial({
+            //        color: 0x000000,
+            //        opacity: 0.8,
+            //        transparent: true
+            //    })
+            //);
+            //crosshair.position.z = -30;
+            //camera.add(crosshair);
 
 
-            //
-            renderer = new THREE.WebGLRenderer();
+
+
+            //render
+            var renderer = new THREE.WebGLRenderer();
             renderer.setPixelRatio(window.devicePixelRatio);
+            document.body.appendChild(renderer.domElement);
             effect = new THREE.StereoEffect(renderer);
             effect.setSize(window.innerWidth, window.innerHeight);
 
-            //renderer.setSize(window.innerWidth, window.innerHeight);
-            //document.body.appendChild(renderer.domElement);
-            //
+            //control
+            controls = new THREE.OrbitControls(camera, effect.domElement);
+            //controls = new THREE.DeviceOrientationControls(camera, effect.domElement);
 
+            // lights
+            var light = new THREE.DirectionalLight(0xffffff);
+            light.position.set(1, 1, 100);
+            scene.add(light);
 
-            //listen change window size
             window.addEventListener('resize', onWindowResize, false);
         }
 
@@ -47,13 +68,12 @@
         }
 
         function animate() {
-            camera.lookAt(scene.position);
-
             requestAnimationFrame(animate);
-            mesh.rotation.x += 0.005;
-            mesh.rotation.y += 0.01;
+            controls.update();
+
             effect.render(scene, camera);
         }
+
         init();
         animate();
     </script>
